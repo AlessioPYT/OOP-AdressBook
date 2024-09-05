@@ -1,11 +1,14 @@
-FROM python:3.11-slim
+FROM python:3.x
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install pipenv  # або poetry
 
-CMD ["python", "./main.py"]
+RUN pipenv install  # або poetry install
+
+CMD ["pipenv", "run", "python", "main.py"]  # або ["poetry", "run", "python", "main.py"]
+
 
 
